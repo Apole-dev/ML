@@ -1,0 +1,3 @@
+C:/Users/Eren/CLionProjects/ML/cmake-build-debug/CMakeFiles/ML.dir
+C:/Users/Eren/CLionProjects/ML/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Eren/CLionProjects/ML/cmake-build-debug/CMakeFiles/rebuild_cache.dir
