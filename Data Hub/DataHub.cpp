@@ -10,7 +10,11 @@ using namespace DataHub; //DataHub::DataHub
 namespace DataHub {
     int numberOfImages = 0;//TODO FİX THIS
 
-    DataHub::DataHub() = default;
+    DataHub::DataHub() {
+        TestData = new vector<DataSet::Data*>();
+        TrainData = new vector<DataSet::Data*>();
+        ValidationData = new vector<DataSet::Data*>();
+    };
 
     DataHub::~DataHub() {
 
@@ -133,6 +137,7 @@ namespace DataHub {
                 printf("Train Case data added\n");
             break;
             case TEST:
+                printf("Test case setted\n");
                 for (size_t i = 0; i < labelData.size(); ++i) {
                     Data* data = new Data();
                     data->AppendElementToFeatureVector(imageData[i]);
@@ -159,7 +164,7 @@ namespace DataHub {
             break;
             default: printf("Default segment called\n");
         }
-        printf("Successfully loaded data\n");
+        printf("-------------------------------------\n Successfully loaded data\n");
     }
 
 
