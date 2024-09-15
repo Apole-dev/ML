@@ -2,24 +2,48 @@
 #include <string>
 #include "Data/Data.h"
 #include "Data Hub/DataHub.h"
+#include "windows.h"
 
 /*
- * Some bugs have that i diidnt fix it yet;
- * System work for read simple data set but not for complex data set
- * I used DataHub to read data set
- * I used Data to classify data
- * HANDWRITEN DATA SET USED
+ * Known Issues:
+ * - There are some unresolved bugs(I dont know actually what they are).
+ * - The system is currently functional for reading MNIST dataset.
+ *
+ * Overview:
+ * - The DataHub class is used to handle the loading and management of dataset files.
+ * - The Data class is used for storing and classifying the data once it has been read.
+ *
+ * Dataset:
+ * - The system is designed to work with a handwritten digit dataset (e.g., MNIST).
+ * - It reads image and label data, and associates them for classification tasks.
+ *
+ * TODO:
+ * - Fix issues related to handling complex datasets (e.g., larger image sizes, more diverse data types).
+ * - Optimize the performance for larger datasets and improve error handling.
+ * - Improve the robustness and generalization of the data parsing functions.
  */
+
 
 using namespace std;
 
 int main() {
 
-    DataHub::DataHub dataHub;
+#ifdef _WIN32
+    char buffer[MAX_PATH];
+    GetCurrentDirectory(sizeof(buffer), buffer);
+    std::string current_directory(buffer);
+    const string cmake_build_debug = "\\cmake-build-debug";
+    current_directory.erase(current_directory.find(cmake_build_debug), cmake_build_debug.length());
+    std::cout << "Current working directory: " << current_directory << std::endl;
+    //Show the current working directory without the "cmake-build-debug" part
+#endif
 
+
+    DataHub::DataHub dataHub;
 
     const string imagePath = R"(C:\Users\Eren\CLionProjects\ML\archive\t10k-images.idx3-ubyte)";
     const string labelPath = R"(C:\Users\Eren\CLionProjects\ML\archive\t10k-labels.idx1-ubyte)";
+
 
     constexpr DataHub::DATA_SET_TYPE dataType = DataHub::TEST;
     dataHub.AssosicateData(dataType, imagePath, labelPath);

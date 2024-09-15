@@ -7,4 +7,6 @@ add_executable(ML main.cpp
         Data/Data.cpp
         Data/Data.h
         "Data Hub/DataHub.cpp"
-        "Data Hub/DataHub.h")
+        "Data Hub/DataHub.h"
+        "KNN Algorithm/KnnAlgorithm.cpp"
+        "KNN Algorithm/KnnAlgorithm.h")
