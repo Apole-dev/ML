@@ -1,5 +1,5 @@
 //
-// Created by Eren on 9/11/2024.
+// Created by Eren on 10/9/2024.
 //
 
 /* NOTES:
@@ -17,7 +17,7 @@
 using namespace std; // i hate " ::std "
 
 
-namespace DataHub {
+namespace DataHandler {
 
 enum DATA_SET_TYPE {
     TRAIN = 0,

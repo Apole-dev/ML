@@ -39,13 +39,13 @@ int main() {
 #endif
 
 
-    DataHub::DataHub dataHub;
+    DataHandler::DataHub dataHub;
 
     const string imagePath = R"(C:\Users\Eren\CLionProjects\ML\archive\t10k-images.idx3-ubyte)";
     const string labelPath = R"(C:\Users\Eren\CLionProjects\ML\archive\t10k-labels.idx1-ubyte)";
 
 
-    constexpr DataHub::DATA_SET_TYPE dataType = DataHub::TEST;
+    constexpr DataHandler::DATA_SET_TYPE dataType = DataHandler::TEST;
     dataHub.AssosicateData(dataType, imagePath, labelPath);
 
 

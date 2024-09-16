@@ -1,13 +1,13 @@
 //
-// Created by Eren on 9/11/2024.
+// Created by Eren on 11/9/2024.
 //
 
 #include "DataHub.h"
 using namespace DataSet; //DataSet::Data
-using namespace DataHub; //DataHub::DataHub
+using namespace DataHandler; //DataHub::DataHub
 //TODO : Print in a better way
 
-namespace DataHub {
+namespace DataHandler {
     int numberOfImages = 0;//TODO FİX THIS
 
     DataHub::DataHub() {
