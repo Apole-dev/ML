@@ -5,8 +5,13 @@
 // ReSharper disable CppMemberFunctionMayBeConst
 #include "Data.h"
 
+#include <cstdio>
+#include <cstdlib>
+
 namespace DataSet {
-    Data::Data() : featureVector(nullptr), label(ZERO), label_Indicator(ZERO) {}
+    Data::Data() : featureVector(nullptr), label(ZERO), label_Indicator(ZERO) {
+        featureVector = new vector<uint8_t>();
+    }
 
     Data::~Data() {
         // Freeing featureVector if it's not nullptr
@@ -31,9 +36,14 @@ namespace DataSet {
         this->label_Indicator = label_Indicator;
     }
 
-    vector<uint8_t> *Data::GetFeatureVector()  {
+    vector<uint8_t> *Data::GetFeatureVector() {
+        if (this->featureVector == nullptr) {
+            printf("Feature vector is null\n");
+            exit(1);
+        }
         return this->featureVector;
     }
+
     unsigned  Data::GetFeatureVectorSize()  {
         return featureVector ? featureVector->size() : 0;
     }

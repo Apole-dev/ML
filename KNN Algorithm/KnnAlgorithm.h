@@ -15,18 +15,19 @@ using namespace std;
 
 class Knn {
 
-
 public:
+    int K_VALUE = 0;
+    DataHandler::DataHub *data_hub;
 
 
     Knn(DataHandler::DataHub *data_hub);
-
     vector<DataSet::Data*> neighbors;
+    map<DataSet::LABEL,int> classFrequency;
 
-    void FindKnn(int k);
-    double CalculateDistance(uint8_t *data);
-    double GetDistance();
-    void SetDistance(double distance);
+    void FindKnnNeighbors(int k);
+    double CalculateDistance(uint8_t testDataPoint, uint8_t trainDataPoin);
+    DataSet::LABEL GetMajorityLabel();
+    void Predict(int k);
 };
 
 

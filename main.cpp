@@ -3,6 +3,7 @@
 #include "Data/Data.h"
 #include "Data Hub/DataHub.h"
 #include "windows.h"
+#include "KNN Algorithm/KnnAlgorithm.h"
 
 /*
  * Known Issues:
@@ -41,12 +42,25 @@ int main() {
 
     DataHandler::DataHub dataHub;
 
-    const string imagePath = R"(C:\Users\Eren\CLionProjects\ML\archive\t10k-images.idx3-ubyte)";
-    const string labelPath = R"(C:\Users\Eren\CLionProjects\ML\archive\t10k-labels.idx1-ubyte)";
+    const string testImagePath = R"(C:\Users\Eren\CLionProjects\ML\archive\t10k-images.idx3-ubyte)";
+    const string testLabelPath = R"(C:\Users\Eren\CLionProjects\ML\archive\t10k-labels.idx1-ubyte)";
+
+    constexpr DataHandler::DATA_SET_TYPE dataType_Test  = DataHandler::TEST;
+    dataHub.AssosicateData(dataType_Test, testImagePath, testLabelPath);
 
 
-    constexpr DataHandler::DATA_SET_TYPE dataType = DataHandler::TEST;
-    dataHub.AssosicateData(dataType, imagePath, labelPath);
+
+    const string trainImagePath = R"(C:\Users\Eren\CLionProjects\ML\archive\train-images.idx3-ubyte)";
+    const string trainLabelPath = R"(C:\Users\Eren\CLionProjects\ML\archive\train-labels.idx1-ubyte)";
+
+    constexpr DataHandler::DATA_SET_TYPE dataType_Train = DataHandler::TRAIN;
+    dataHub.AssosicateData(dataType_Train, trainImagePath, trainLabelPath);
+
+
+
+    Knn knn(&dataHub);
+    knn.Predict(5);
+
 
 
     return 0;
