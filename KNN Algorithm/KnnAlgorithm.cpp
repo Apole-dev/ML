@@ -5,7 +5,6 @@
 #include "KnnAlgorithm.h"
 
 #include <cmath>
-#include <limits>
 
 using namespace std;
 
@@ -36,12 +35,13 @@ void Knn::FindKnnNeighbors(int k) {
         for (int j = 0; j < trainDataSet->size(); ++j) {
 
             vector<uint8_t> *trainDataVector = trainDataSet->at(j)->GetFeatureVector();
-            printf("train data size: %d\n", trainDataVector->size());
-            double distance = CalculateDistance(trainDataVector->at(j), trainDataVector->at(j)); //BUG HERE
+            double distance = 0;
+            for (int p = 0; p < testDataVector->size(); ++p) {
+                distance += CalculateDistance(testDataVector->at(p), trainDataVector->at(p));
+            }
             distances.insert(make_pair(distance,trainDataSet->at(j)));
 
         }
-        printf("testing bb");
 
     }
 
