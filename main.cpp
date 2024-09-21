@@ -3,7 +3,8 @@
 #include "Data/Data.h"
 #include "Data Hub/DataHub.h"
 #include "windows.h"
-#include "KNN Algorithm/KnnAlgorithm.h"
+#include "KNN Algorithm/KNN.h"
+
 
 /*
  * Known Issues:
@@ -58,8 +59,8 @@ int main() {
 
 
 
-    Knn knn(&dataHub);
-    knn.Predict(5);
+    ML_ALGORITHMS::KNN KNN(dataHub);
+    KNN.FindNearestNeighbors(3);
 
 
 

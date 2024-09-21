@@ -37,6 +37,10 @@ public:
     DataHub();
     ~DataHub();
 
+
+
+    uint32_t ROWS;
+    uint32_t COLUMNS;
     uint8_t NumberOfClasses{}; //Number of classes in the dataset
     uint8_t NumberOfFeatures{}; //Feature vector size
     map<uint8_t,DataSet::LABEL> LabelMap; //Maps class labels to their indexes

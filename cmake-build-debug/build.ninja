@@ -67,8 +67,8 @@ build CMakeFiles/ML.dir/Data_Hub/DataHub.cpp.obj: CXX_COMPILER__ML_unscanned_Deb
   OBJECT_DIR = CMakeFiles\ML.dir
   OBJECT_FILE_DIR = CMakeFiles\ML.dir\Data_Hub
 
-build CMakeFiles/ML.dir/KNN_Algorithm/KnnAlgorithm.cpp.obj: CXX_COMPILER__ML_unscanned_Debug C$:/Users/Eren/CLionProjects/ML/KNN$ Algorithm/KnnAlgorithm.cpp || cmake_object_order_depends_target_ML
-  DEP_FILE = CMakeFiles\ML.dir\KNN_Algorithm\KnnAlgorithm.cpp.obj.d
+build CMakeFiles/ML.dir/KNN_Algorithm/KNN.cpp.obj: CXX_COMPILER__ML_unscanned_Debug C$:/Users/Eren/CLionProjects/ML/KNN$ Algorithm/KNN.cpp || cmake_object_order_depends_target_ML
+  DEP_FILE = CMakeFiles\ML.dir\KNN_Algorithm\KNN.cpp.obj.d
   FLAGS = -g -std=gnu++1z -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\ML.dir
   OBJECT_FILE_DIR = CMakeFiles\ML.dir\KNN_Algorithm
@@ -81,7 +81,7 @@ build CMakeFiles/ML.dir/KNN_Algorithm/KnnAlgorithm.cpp.obj: CXX_COMPILER__ML_uns
 #############################################
 # Link the executable ML.exe
 
-build ML.exe: CXX_EXECUTABLE_LINKER__ML_Debug CMakeFiles/ML.dir/main.cpp.obj CMakeFiles/ML.dir/Data/Data.cpp.obj CMakeFiles/ML.dir/Data_Hub/DataHub.cpp.obj CMakeFiles/ML.dir/KNN_Algorithm/KnnAlgorithm.cpp.obj
+build ML.exe: CXX_EXECUTABLE_LINKER__ML_Debug CMakeFiles/ML.dir/main.cpp.obj CMakeFiles/ML.dir/Data/Data.cpp.obj CMakeFiles/ML.dir/Data_Hub/DataHub.cpp.obj CMakeFiles/ML.dir/KNN_Algorithm/KNN.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ML.dir

@@ -58,6 +58,9 @@ namespace DataHandler {
         size_t result = fread(pixels.data(), sizeof(uint8_t),pixels.size(), dataFile);
         if(result != pixels.size()) { printf("Error reading file: %s\n", path.c_str() ); exit(1); }
 
+        ROWS = numberOfRows;
+        COLUMNS = numberOfColumns;
+
         fclose(dataFile);
         return pixels;
     }
@@ -118,35 +121,56 @@ namespace DataHandler {
         vector<uint8_t> labelData = ReadLabelData(Labelpath);
         vector<uint8_t> imageData = ReadImageData(ImagePath);
 
-        if (labelData.size() != numberOfImages) {
-            printf("Mismatch between label data size and image data size\n");
-            return;
+        if (imageData.size() != labelData.size() * ROWS * COLUMNS) {
+            printf("Mismatch in image data and label data sizes\n");
+            exit(1);
         }
 
         switch (type) {
             case TRAIN:
-                printf("Train case\n");
+
                 for (size_t i = 0; i < labelData.size(); ++i) {
                     Data* data = new Data();
-                    data->AppendElementToFeatureVector(imageData[i]);
+
+                    // Calculate the start index of the image data for the current image
+                    size_t imageStartIndex = i * ROWS*COLUMNS;
+
+                    // Append the image data to the feature vector
+                    for (size_t m = 0; m < ROWS*COLUMNS; ++m) {
+                        data->AppendElementToFeatureVector(imageData[imageStartIndex + m]);
+                    }
+
+                    // Set the label and label indicator
                     data->SetLabel(labelData[i]);
                     data->SetLabel_Indicator(static_cast<LABEL>(labelData[i]));
+
                     LabelMap.insert({labelData[i], static_cast<LABEL>(labelData[i])});
+
                     TrainData->push_back(data);
                 }
-                printf("Train Case data added\n");
+
             break;
             case TEST:
-                printf("Test case setted\n");
                 for (size_t i = 0; i < labelData.size(); ++i) {
                     Data* data = new Data();
-                    data->AppendElementToFeatureVector(imageData[i]);
+
+
+                    // Calculate the start index of the image data for the current image
+                    size_t imageStartIndex = i * ROWS*COLUMNS;
+
+                    // Append the image data to the feature vector
+                    for (size_t m = 0; m < ROWS*COLUMNS; ++m) {
+                        data->AppendElementToFeatureVector(imageData[imageStartIndex + m]);
+                    }
+
+                    // Set the label and label indicator
                     data->SetLabel(labelData[i]);
                     data->SetLabel_Indicator(static_cast<LABEL>(labelData[i]));
+
                     LabelMap.insert({labelData[i], static_cast<LABEL>(labelData[i])});
                     TestData->push_back(data);
+                    //printf("TEST DATA size : %d\n", TestData->size());
                 }
-            printf("Test Case data added\n");
             break;
             case VALIDATION: {
                 //TODO SPLIT VALIDATION DATA
@@ -156,10 +180,10 @@ namespace DataHandler {
                     data->AppendElementToFeatureVector(imageData[i]);
                     data->SetLabel(labelData[i]);
                     data->SetLabel_Indicator(static_cast<LABEL>(labelData[i]));
+
                     LabelMap.insert({labelData[i], static_cast<LABEL>(labelData[i])});
                     ValidationData->push_back(data);
                 }
-                printf("Validation Case data added\n");
             }
             break;
             default: printf("Default segment called\n");
@@ -200,7 +224,10 @@ namespace DataHandler {
     }
 
     bool DataHub::ControlData(vector<Data*> *data) {
-        if(data->empty()){printf("Data is empty\n"); return false;};
+        if(!data || data->empty()){ // Pointer null ise veya data boşsa
+            printf("Data is empty or null\n");
+            return false;
+        };
         return true;
     }
 
